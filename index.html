@@ -1,0 +1,35 @@
+---
+layout: default
+title: Collection
+permalink: /
+---
+
+<section class="hero">
+  <h1>VELDORE</h1>
+  <p>Maison de Couture · Established 2026</p>
+  <div class="tag">{{ site.tagline }}</div>
+</section>
+
+<h2 class="section-title">THE COLLECTION</h2>
+
+{% if site.data.products.size > 0 %}
+  <div class="grid">
+    {% for p in site.data.products %}
+      <div class="card">
+        {% if p.image and p.image != "" %}
+          <img src="{{ p.image }}" alt="{{ p.name | escape }}" />
+        {% else %}
+          <div class="placeholder">VELDORE</div>
+        {% endif %}
+        <div class="card-body">
+          <h3>{{ p.name | escape }}</h3>
+          <div class="price">€{{ p.price }}</div>
+          <div class="desc">{{ p.description | escape }}</div>
+          <button onclick="alert('Checkout coming soon. Contact the maison to acquire this piece.')">Acquire</button>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% else %}
+  <div class="empty">The collection is being curated. Return shortly.</div>
+{% endif %}
