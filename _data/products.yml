@@ -1,0 +1,14 @@
+- name: "Onyx Wool Coat"
+  price: 1200.00
+  description: "A sculpted silhouette in pure virgin wool."
+  image: "[images.unsplash.com](https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=800)"
+
+- name: "Ivoire Silk Blouse"
+  price: 480.00
+  description: "Hand-finished silk, cut for quiet presence."
+  image: ""
+
+- name: "Noir Tailored Trouser"
+  price: 620.00
+  description: "Italian wool, architectural line."
+  image: ""
