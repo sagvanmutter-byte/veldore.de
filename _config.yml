@@ -1,0 +1,15 @@
+title: VELDORE
+tagline: By Sagvan & Ilias
+description: Maison de Couture · Established 2026
+url: ""
+baseurl: ""
+
+# Admin-Passwort (clientseitig — nur leichter Schutz!)
+admin_password: "veldore2026"
+
+permalink: /:title/
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
