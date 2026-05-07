@@ -1,0 +1,81 @@
+---
+layout: default
+title: Admin
+permalink: /admin/
+---
+
+<div class="admin-panel">
+  <h2>Admin · Edit Collection</h2>
+
+  <div id="locked">
+    <div class="login-box">
+      <label>Password</label>
+      <input type="password" id="pw" placeholder="Enter password" />
+      <button class="primary" onclick="veldoreLogin()">Enter</button>
+      <p id="loginErr" class="error-msg">Incorrect password.</p>
+    </div>
+  </div>
+
+  <div id="unlocked" style="display:none;">
+    <div class="notice">
+      Authenticated. <a class="link-gold" onclick="veldoreLogout()">Sign out</a>
+    </div>
+
+    <p style="margin-bottom:20px; color:var(--muted);">
+      VELDORE is hosted on GitHub Pages — the collection is managed through the
+      <code>_data/products.yml</code> file in this repository.
+    </p>
+
+    <h3 class="subhead">How to add a new piece</h3>
+    <ol style="margin-left:20px; color:var(--text); margin-bottom:30px;">
+      <li>Open <code>_data/products.yml</code> in your GitHub repository.</li>
+      <li>Add a new entry following the format below.</li>
+      <li>Commit the change — the site rebuilds automatically.</li>
+    </ol>
+
+<pre class="code-block">
+- name: "Piece Name"
+  price: 980.00
+  description: "A short, evocative description."
+  image: "[example.com](https://example.com/image.jpg)"
+</pre>
+
+    <h3 class="subhead">Current Collection</h3>
+    <div class="admin-list">
+      {% for p in site.data.products %}
+        <div class="admin-item">
+          <div>
+            <span>{{ p.name | escape }}</span>
+            <small>€{{ p.price }} — {{ p.description | escape }}</small>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<script>
+  const ADMIN_PASSWORD = "{{ site.admin_password }}";
+  const AUTH_KEY = "veldore_auth";
+
+  function checkAuth() {
+    if (sessionStorage.getItem(AUTH_KEY) === "true") {
+      document.getElementById("locked").style.display = "none";
+      document.getElementById("unlocked").style.display = "block";
+    }
+  }
+  function veldoreLogin() {
+    const pw = document.getElementById("pw").value;
+    if (pw === ADMIN_PASSWORD) {
+      sessionStorage.setItem(AUTH_KEY, "true");
+      checkAuth();
+    } else {
+      document.getElementById("loginErr").style.display = "block";
+    }
+  }
+  function veldoreLogout() {
+    sessionStorage.removeItem(AUTH_KEY);
+    location.reload();
+  }
+  checkAuth();
+</script>
