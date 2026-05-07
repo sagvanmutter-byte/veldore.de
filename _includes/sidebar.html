@@ -1,0 +1,19 @@
+<aside>
+  <div class="logo">
+    VELDORE
+    <small>{{ site.tagline }}</small>
+  </div>
+  <nav>
+    <ul>
+      <li class="{% if page.url == '/' %}active{% endif %}">
+        <a href="{{ '/' | relative_url }}">Collection</a>
+      </li>
+      <li class="{% if page.url contains 'about' %}active{% endif %}">
+        <a href="{{ '/about/' | relative_url }}">Maison</a>
+      </li>
+      <li class="admin-link {% if page.url contains 'admin' %}active{% endif %}">
+        <a href="{{ '/admin/' | relative_url }}">⚜ Admin</a>
+      </li>
+    </ul>
+  </nav>
+</aside>
